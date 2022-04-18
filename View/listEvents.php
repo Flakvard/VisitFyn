@@ -48,6 +48,8 @@
                                         echo "<th>#</th>";                                        
                                         echo "<th>Event Category</th>";
                                         echo "<th>Event Name</th>";
+                                        echo "<th>Event Description</th>";
+                                        echo "<th>Event Date</th>";
                                         echo "<th>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -57,6 +59,8 @@
                                         echo "<td>" . $row['id'] . "</td>";                                        
                                         echo "<td>" . $row['category'] . "</td>";
                                         echo "<td>" . $row['name'] . "</td>";
+                                        echo "<td>" . $row['description'] . "</td>";
+                                        echo "<td>" . $row['updatedAt'] . "</td>";
                                         echo "<td>";
                                         echo "<a href='EventAdmin.php?act=update&id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><i class='fa fa-edit'></i></a>";
                                         echo "<a href='EventAdmin.php?act=delete&id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fa fa-trash'></i></a>";                                        

@@ -36,6 +36,16 @@
                             <input type="text" name="name" class="form-control" value="<?php echo $sporttb->name; ?> ">
                             <span class="help-block"><?php echo $sporttb->name_msg;?></span>
                         </div>
+                        <div class="form-group <?php echo (!empty($sporttb->description_msg)) ? 'has-error' : ''; ?>">
+                            <label>Event Description</label>
+                            <input type="text" name="description" class="form-control" value="<?php echo $sporttb->description; ?> ">
+                            <span class="help-block"><?php echo $sporttb->description_msg;?></span>
+                        </div>
+                        <div class="form-group <?php echo (!empty($sporttb->updatedAt_msg)) ? 'has-error' : ''; ?>">
+                            <label>Event Date</label>
+                            <input type="text" name="updatedAt" class="form-control" value="<?php echo $sporttb->updatedAt; ?> ">
+                            <span class="help-block"><?php echo $sporttb->updatedAt_msg;?></span>
+                        </div>
                         <input type="hidden" name="id" value="<?php echo $sporttb->id; ?>"/>
                         <input type="submit" name="updatebtn" class="btn btn-primary" value="Submit">
                         <a href="EventAdmin.php" class="btn btn-default">Cancel</a>

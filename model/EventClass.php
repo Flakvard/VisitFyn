@@ -31,9 +31,8 @@
 			try
 			{	
 				$this->open_db();
-				$query=$this->condb->prepare("INSERT INTO event_template (category,name) VALUES (?, ?)");
-                //$query=$this->condb->prepare("INSERT INTO event_template (category, name, description, updatedAt) VALUES (:category, :name, :description, :updatedAt)");
-				$query->bind_param("ss",$obj->category,$obj->name);
+				$query=$this->condb->prepare("INSERT INTO event_template (category, name, description, updatedAt) VALUES (?, ?, ?, ?)");
+				$query->bind_param("ssss",$obj->category,$obj->name,$obj->description,$obj->updatedAt);
 				$query->execute();
 				$res= $query->get_result();
 				$last_id=$this->condb->insert_id; //fanger id for eventet
@@ -99,8 +98,8 @@
 			try
 			{	
 				$this->open_db();
-				$query=$this->condb->prepare("UPDATE event_template SET category=?,name=? WHERE id=?");
-				$query->bind_param("ssi", $obj->category,$obj->name,$obj->id);
+				$query=$this->condb->prepare("UPDATE event_template SET category=?, name=?, description=?, updatedAt=? WHERE id=?");
+				$query->bind_param("ssssi",$obj->category,$obj->name,$obj->description,$obj->updatedAt,$obj->id);
 				$query->execute();
 				$res=$query->get_result();						
 				$query->close();
