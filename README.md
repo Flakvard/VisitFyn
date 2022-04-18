@@ -1,5 +1,5 @@
 # VisitFyn
- VisitFyn
+ A prototype for VisitFyn
 
 <h2>Please import SQL database to get the prototype up and running</h2>
  Import visitfyndb.sql into PHPMyAdmin
