@@ -1,9 +1,10 @@
 # VisitFyn
  VisitFyn
 
-#Please import SQL database to get the prototype up and running<br>
+<h2>Please import SQL database to get the prototype up and running</h2>
+ <br>
 <br>
-#Please register a user in PHP myAdmin
+<h2>Please register a user in PHP myAdmin</h2>
 <br>
 DB_SERVER = localhost <br>
 DB_USERNAME = myuser <br>
