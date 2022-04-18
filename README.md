@@ -3,6 +3,7 @@
 
 <h2>Please import SQL database to get the prototype up and running</h2>
  <br>
+ Import visitfyndb.sql into PHP myAdmin
 <br>
 <h2>Please register a user in PHP myAdmin</h2>
 <br>
