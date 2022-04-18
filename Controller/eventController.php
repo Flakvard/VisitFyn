@@ -99,7 +99,7 @@
                     $id=$_GET['id'];
                     $res=$this->objsm->deleteRecord($id);                
                     if($res){
-                        $this->pageRedirect('index.php');
+                        $this->pageRedirect('../View/EventAdmin.php');
                     }else{
                         echo "Somthing is wrong..., try again.";
                     }
@@ -138,18 +138,18 @@
                     }else
                     {         
                         $_SESSION['sporttbl0']=serialize($sporttb);      
-                        $this->pageRedirect("view/update.php");                
+                        $this->pageRedirect("../View/updateEvents.php");                
                     }
                 }elseif(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     $id=$_GET['id'];
                     $result=$this->objsm->selectRecord($id);
                     $row=mysqli_fetch_array($result);  
-                    $sporttb=new sports();                  
+                    $sporttb=new events();                  
                     $sporttb->id=$row["id"];
                     $sporttb->name=$row["name"];
                     $sporttb->category=$row["category"];
                     $_SESSION['sporttbl0']=serialize($sporttb);
-                    $this->pageRedirect('view/update.php');
+                    $this->pageRedirect('../view/updateEvents.php');
                 }else{
                     echo "Invalid operation.";
                 }

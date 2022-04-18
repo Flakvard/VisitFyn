@@ -31,8 +31,8 @@
 			try
 			{	
 				$this->open_db();
-				$query=$this->condb->prepare("INSERT INTO sports (category,name) VALUES (?, ?)");
-                //$query=$this->condb->prepare("INSERT INTO event_template (title, description, type, updatedAt) VALUES (:title, :description, :type, :updatedAt)");
+				//$query=$this->condb->prepare("INSERT INTO sports (category,name) VALUES (?, ?)");
+                $query=$this->condb->prepare("INSERT INTO event_template (type, title, description, updatedAt) VALUES (:type, :title, :description, :updatedAt)");
 				$query->bind_param("ss",$obj->category,$obj->name);
 				$query->execute();
 				$res= $query->get_result();

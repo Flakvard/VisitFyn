@@ -22,21 +22,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Add Events</h2>
+                        <h2>Update Events</h2>
                     </div>
-                    <p>Please fill this form and submit to add events record in the database.</p>
-                    <form action="EventAdmin.php?act=add" method="post" >
+                    <p>Please edit to change events record in the database.</p>
+                    <form action="EventAdmin.php?act=update" method="post" >
                         <div class="form-group <?php echo (!empty($sporttb->category_msg)) ? 'has-error' : ''; ?>">
-                            <label>Events Type/Category</label>
+                            <label>Event Category</label>
                             <input type="text" name="category" class="form-control" value="<?php echo $sporttb->category; ?>">
                             <span class="help-block"><?php echo $sporttb->category_msg;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($sporttb->name_msg)) ? 'has-error' : ''; ?>">
-                            <label>Events Name</label>
-                            <input name="name" class="form-control" value="<?php echo $sporttb->name; ?>">
+                            <label>Event Name</label>
+                            <input type="text" name="name" class="form-control" value="<?php echo $sporttb->name; ?> ">
                             <span class="help-block"><?php echo $sporttb->name_msg;?></span>
                         </div>
-                        <input type="submit" name="addbtn" class="btn btn-primary" value="Submit">
+                        <input type="hidden" name="id" value="<?php echo $sporttb->id; ?>"/>
+                        <input type="submit" name="updatebtn" class="btn btn-primary" value="Submit">
                         <a href="EventAdmin.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>

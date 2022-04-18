@@ -38,7 +38,7 @@
                         <a href="welcome.php" class="btn btn-success pull-left">Home</a>
                         <h2 class="pull-left">Event Details</h2>
                         <a href="insertEvent.php" class="btn btn-success pull-right">Add New Event</a>
-                        <a href='index.php?act=delete&id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fa fa-trash'></i></a>
+                        <a href='EventAdmin.php?act=delete&id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fa fa-trash'></i></a>
                     </div>
                     <?php
                         if($result->num_rows > 0){
@@ -58,8 +58,8 @@
                                         echo "<td>" . $row['category'] . "</td>";
                                         echo "<td>" . $row['name'] . "</td>";
                                         echo "<td>";
-                                        echo "<a href='index.php?act=update&id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><i class='fa fa-edit'></i></a>";
-                                        echo "<a href='index.php?act=delete&id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fa fa-trash'></i></a>";                                        
+                                        echo "<a href='EventAdmin.php?act=update&id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><i class='fa fa-edit'></i></a>";
+                                        echo "<a href='EventAdmin.php?act=delete&id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fa fa-trash'></i></a>";                                        
                                         echo "</td>";
                                     echo "</tr>";
                                 }
