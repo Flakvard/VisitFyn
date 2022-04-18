@@ -20,11 +20,58 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
-    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
-    <p>
-        <a href="reset-passwordTemplate.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-        <a href="EventAdmin.php" class="btn btn-primary ml-3">Event admin center</a>
-    </p>
+    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to VisitFyn.</h1>
+    
+    
+
+    <table style="width: 100%;">
+    <tbody>
+        <tr>
+            <td style="width: 33.3333%;">
+                <a href="EventAdmin.php" class="btn btn-secondary">Attraktioner <img src="../img/Attraktioner.png"></a>
+            </td>
+            <td style="width: 33.3333%;">
+                 <a href="EventAdmin.php" class="btn btn-secondary">Spise Steder <img src="../img/SpiseSteder.png"></a>
+            </td>
+            <td style="width: 33.3333%;">
+                <a href="EventAdmin.php" class="btn btn-secondary">Events <img src="../img/Events.png"></a>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 33.3333%;">
+              <a href="EventAdmin.php" class="btn btn-secondary">Overnatning <img src="../img/Overnatning.png"></a>
+            </td>
+            <td style="width: 33.3333%;">
+                 <a href="EventAdmin.php" class="btn btn-secondary">Aktiviteter <img src="../img/Aktiviteter.png"></a>
+            </td>
+            <td style="width: 33.3333%;">
+                <a href="EventAdmin.php" class="btn btn-secondary">Konferencer <img src="../img/Konferencer.png"></a>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 33.3333%;">
+               <a href="EventAdmin.php" class="btn btn-secondary">Transport <img src="../img/Transport.png"></a>
+            </td>
+            <td style="width: 33.3333%;">
+                 <a href="EventAdmin.php" class="btn btn-secondary">Information <img src="../img/Information.png"></a>
+            </td>
+            <td style="width: 33.3333%; text-align: center;">
+                <a href="EventAdmin.php" class="btn btn-secondary">Alle <img src="../img/Alle.png"></a>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 33.3333%;">
+                <div data-empty="true" style="text-align: center;"><br></div>
+            </td>
+            <td style="width: 33.3333%;">
+               <a href="Brugerside.php" class="btn btn-secondary">Bruger <img src="../img/Bruger.png"></a>
+            </td>
+            <td style="width: 33.3333%;">
+                <div data-empty="true" style="text-align: center;"><br></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
