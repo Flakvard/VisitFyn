@@ -1,10 +1,11 @@
 <?php
 // Include config file
-require_once "../model/config.php";
+require_once "../model/model.php";
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $confirm_password = $navn = $efternavn = $tlf = $land = $by = $postnr = "";
+$username_err = $password_err = $confirm_password_err = $navn_err = $efternavn_err = $tlf_err = $land_err = $by_err = $postnr_err = "";
+
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,12 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate username
     if (empty(trim($_POST["username"]))) {
         $username_err = "Please enter a username.";
-    } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))) {
-        $username_err = "Username can only contain letters, numbers, and underscores.";
     } else {
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = :username";
-
+        $pdo = open_database_connection();
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
@@ -28,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 if ($stmt->rowCount() == 1) {
-                    $username_err = "This username is already taken.";
+                    $username_err = "Denne e-mail er allerede taget.";
                 } else {
                     $username = trim($_POST["username"]);
                 }
@@ -41,6 +40,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Validate navn
+    if (empty(trim($_POST["navn"]))) {
+        $navn_err = "Please enter a password.";
+    } else {
+        $navn = trim($_POST["navn"]);
+    }
+
+    // Validate efternavn
+    if (empty(trim($_POST["efternavn"]))) {
+        $efternavn_err = "Please enter a efternavn.";
+    } else {
+        $efternavn = trim($_POST["efternavn"]);
+    }
+
+    // Validate tlf
+    if (empty(trim($_POST["tlfnr"]))) {
+        $tlf_err = "Please enter a tlfnr.";
+    } else {
+        $tlf = trim($_POST["tlfnr"]);
+    }
+
+    // Validate by
+    if (empty(trim($_POST["by"]))) {
+        $by_err = "Please enter a by.";
+    } else {
+        $by = trim($_POST["by"]);
+    }
+
+    // Validate land
+    if (empty(trim($_POST["land"]))) {
+        $land_err = "Please enter a land.";
+    } else {
+        $land = trim($_POST["land"]);
+    }
+
+    // Validate postnr
+    if (empty(trim($_POST["postnr"]))) {
+        $postnr_err = "Please enter a postnr.";
+    } else {
+        $postnr = trim($_POST["postnr"]);
+    }
+
+    
     // Validate password
     if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter a password.";
@@ -60,25 +102,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+
+    
     // Check input errors before inserting in database
-    if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+    if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($navn_err) && empty($efternavn_err) && empty($tlf_err) && empty($postnr_err) && empty($land_err) && empty($by_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+        $sql = "INSERT INTO users (username, password, fornavn, efternavn, tlfnr, land, postnr, city) VALUES (:username, :password, :fornavn, :efternavn, :tlfnr, :land, :postnr, :city)";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":fornavn", $param_navn, PDO::PARAM_STR);
+            $stmt->bindParam(":efternavn", $param_efternavn, PDO::PARAM_STR);
+            $stmt->bindParam(":tlfnr", $param_tlf, PDO::PARAM_STR);
+            $stmt->bindParam(":land", $param_land, PDO::PARAM_STR);
+            $stmt->bindParam(":city", $param_by, PDO::PARAM_STR);
+            $stmt->bindParam(":postnr", $param_postnr, PDO::PARAM_STR);
 
             // Set parameters
             $param_username = $username;
+            $param_navn = $navn;
+            $param_efternavn = $efternavn; 
+            $param_tlf = $tlf;
+            $param_land = $land;
+            $param_by = $by;
+            $param_postnr = $postnr;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Redirect to login page
-                header("location: login.php");
+                header("location: ../view/loginTemplate.php");
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -91,54 +147,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close connection
     unset($pdo);
 }
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font: 14px sans-serif;
-        }
-
-        .wrapper {
-            width: 360px;
-            padding: 20px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="wrapper">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-            </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
-        </form>
-    </div>
-</body>
-
-</html>
