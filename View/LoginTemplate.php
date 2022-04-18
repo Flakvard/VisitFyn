@@ -1,5 +1,5 @@
 <?php
-require_once "../controller/Login.php";
+require_once "./controller/Login.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@ require_once "../controller/Login.php";
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="UserRegistrationTemplate.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="./View/UserRegistrationTemplate.php">Sign up now</a>.</p>
         </form>
     </div>
 </body>

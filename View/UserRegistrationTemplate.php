@@ -74,7 +74,7 @@ require_once "../controller/UserRegistration.php";
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
-            <p>Already have an account? <a href="logintemplate.php">Login here</a>.</p>
+            <p>Already have an account? <a href="../index.php">Login here</a>.</p>
         </form>
     </div>
 </body>
