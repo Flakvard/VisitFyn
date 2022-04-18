@@ -32,14 +32,14 @@
 			{	
 				$this->open_db();
 				$query=$this->condb->prepare("INSERT INTO event_template (category,name) VALUES (?, ?)");
-                //$query=$this->condb->prepare("INSERT INTO event_template (type, title, description, updatedAt) VALUES (:type, :title, :description, :updatedAt)");
+                //$query=$this->condb->prepare("INSERT INTO event_template (category, name, description, updatedAt) VALUES (:category, :name, :description, :updatedAt)");
 				$query->bind_param("ss",$obj->category,$obj->name);
 				$query->execute();
 				$res= $query->get_result();
-				$last_id=$this->condb->insert_id;
+				$last_id=$this->condb->insert_id; //fanger id for eventet
 				$query->close();
-				$this->close_db();
-				return $last_id;
+				$this->close_db(); // lukker datebasen
+				return $last_id; //returner id for eventet
 			}
 			catch (Exception $e) 
 			{
@@ -80,10 +80,10 @@
                 {$query=$this->condb->prepare("SELECT * FROM event_template");	}		
 				
 				$query->execute();
-				$res=$query->get_result();	
-				$query->close();				
-				$this->close_db();                
-                return $res;
+				$res=$query->get_result();	//setter query i en variabel
+				$query->close();		//lukker query
+				$this->close_db();      //lukker datebasen
+                return $res;	//returnerer listen af events fra query variabelen 
 			}
 			catch(Exception $e)
 			{

@@ -73,9 +73,9 @@
                         //call insert record            
                         $pid = $this -> objsm ->insertRecord($sporttb);
                         if($pid>0){			
-                            $this->list();
+                            $this->list(); //tilføjer eventet til listen af events 
                         }else{
-                            echo "Somthing is wrong..., try again.";
+                            echo "Somthing is wrong..., try again."; //hvis ikke noget id bliver returneret
                         }
                     }else
                     {    

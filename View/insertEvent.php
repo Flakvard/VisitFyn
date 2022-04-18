@@ -27,7 +27,7 @@
                     <p>Please fill this form and submit to add events record in the database.</p>
                     <form action="EventAdmin.php?act=add" method="post" >
                         <div class="form-group <?php echo (!empty($sporttb->category_msg)) ? 'has-error' : ''; ?>">
-                            <label>Events Type/Category</label>
+                            <label>Events Category</label>
                             <input type="text" name="category" class="form-control" value="<?php echo $sporttb->category; ?>">
                             <span class="help-block"><?php echo $sporttb->category_msg;?></span>
                         </div>
