@@ -37,7 +37,7 @@
                     <div class="page-header clearfix">
                         <a href="welcome.php" class="btn btn-success pull-left">Home</a>
                         <h2 class="pull-left">Event Details</h2>
-                        <a href="insertEvent.php" class="btn btn-success pull-right">Add New Event</a>
+                        <a href="insertEvent.php" class="btn btn-success pull-right">Add New Event (kun virksomheder)</a>
                         <a href='EventAdmin.php?act=delete&id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fa fa-trash'></i></a>
                     </div>
                     <?php
